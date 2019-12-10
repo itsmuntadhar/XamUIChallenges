@@ -26,6 +26,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: Muntadher Haydar Alrasoul (NC2WYS68W3)</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -130,7 +133,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\XamUIChallenges\XamUIChallenges.csproj">
-      <Project>{CD168F8F-A0E6-4F3C-83CA-AFD7D38CE6E4}</Project>
+      <Project>{F380DE08-7A4C-43CC-ABF2-46BEA9729554}</Project>
       <Name>XamUIChallenges</Name>
     </ProjectReference>
   </ItemGroup>

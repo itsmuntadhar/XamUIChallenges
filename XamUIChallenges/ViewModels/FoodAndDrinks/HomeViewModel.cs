@@ -20,11 +20,13 @@ namespace XamUIChallenges.ViewModels.FoodAndDrinks
 
         public ICommand ItemDetailsCommand { get; }
 
+        public ICommand AboutCommand { get; }
+
         public HomeViewModel(INavigation navigation) : base(navigation)
         {
             Title = "Food And Drinks";
             ItemDetailsCommand = new Command<FDM.Item>(ItemDetails);
-
+            AboutCommand = new Command(About);
             LoadItems();
         }
 
@@ -48,6 +50,11 @@ namespace XamUIChallenges.ViewModels.FoodAndDrinks
             IsBusy = true;
             await Navigation.PushModalAsync(new Views.FoodAndDrinks.ItemView(item));
             IsBusy = false;
+        }
+
+        async void About()
+        {
+            await Navigation.PushModalAsync(new Views.FoodAndDrinks.AboutView());
         }
     }
 }

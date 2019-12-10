@@ -1,74 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="XamUIChallenges.Views.FoodAndDrinks.ItemView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BackgroundColor="{Binding Item.DarkColor}"
-    mc:Ignorable="d">
+<ContentPage x:Class="XamUIChallenges.Views.FoodAndDrinks.ItemView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="{Binding Item.DarkColor}"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             mc:Ignorable="d">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid Padding="24" BindingContext="{Binding Item}">
+        <ScrollView x:Name="LayoutRoot">
+            <Grid Padding="24"
+                  BindingContext="{Binding Item}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*" />
                     <RowDefinition Height="0.4*" />
                     <RowDefinition Height="0.1*" />
                 </Grid.RowDefinitions>
-                <magic:GradientView
-                    x:Name="GradientView"
-                    Grid.RowSpan="3"
-                    Margin="-24" />
-                <Image
-                    x:Name="Image"
-                    Aspect="AspectFill"
-                    HorizontalOptions="Center"
-                    Opacity="0"
-                    Source="{Binding ImageSource}"
-                    TranslationY="55"
-                    VerticalOptions="Center" />
-                <Label
-                    Grid.Row="1"
-                    LineBreakMode="WordWrap"
-                    TextColor="#deffffff">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
+                <magic:GradientView x:Name="GradientView"
+                                    Grid.RowSpan="3"
+                                    Grid.ColumnSpan="3"
+                                    Margin="-24" />
+                <Button BackgroundColor="Transparent"
+                        TextColor="#000"
+                        FontSize="19"
+                        Text="&#x3c;"
+                        VerticalOptions="Start"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{Binding BindingContext.BackCommand, Source={x:Reference LayoutRoot}}" />
+                <Image x:Name="Image"
+                       Grid.ColumnSpan="3"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Center"
+                       Opacity="0"
+                       Source="{Binding ImageSource}"
+                       TranslationY="55"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       LineBreakMode="WordWrap"
+                       TextColor="#deffffff">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span
-                                CharacterSpacing="1.5"
-                                FontSize="13"
-                                Text="{Binding Header}" />
+                            <Span CharacterSpacing="1.5"
+                                  FontSize="13"
+                                  Text="{Binding Header}" />
                             <Span Text="&#xa;" />
-                            <Span
-                                FontAttributes="Bold"
-                                FontSize="29"
-                                Text="{Binding Title}" />
+                            <Span FontAttributes="Bold"
+                                  FontSize="29"
+                                  Text="{Binding Title}" />
                             <Span Text="&#xa;&#xa;" />
-                            <Span FontSize="19" Text="{Binding Description}" />
+                            <Span FontSize="19"
+                                  Text="{Binding Description}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label
-                    x:Name="lblPrice"
-                    Grid.Row="2"
-                    FontAttributes="Bold"
-                    FontSize="23"
-                    HorizontalOptions="Start"
-                    Text="{Binding Price, StringFormat='${0}'}"
-                    TextColor="#deffffff"
-                    TranslationX="-150"
-                    VerticalOptions="Center" />
-                <Button
-                    x:Name="btnAdd"
-                    Grid.Row="2"
-                    BackgroundColor="#fafaf9"
-                    CornerRadius="23"
-                    FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="End"
-                    Text="+ Add"
-                    TextColor="{Binding DarkColor}"
-                    TranslationX="150" />
+                <Label x:Name="lblPrice"
+                       Grid.Row="2"
+                       FontAttributes="Bold"
+                       FontSize="23"
+                       Grid.Column="0"
+                       Text="{Binding Price, StringFormat='${0}'}"
+                       TextColor="#deffffff"
+                       TranslationX="-150"
+                       VerticalOptions="Center" />
+                <Button x:Name="btnAdd"
+                        Grid.Row="2"
+                        BackgroundColor="#fafaf9"
+                        CornerRadius="23"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        Grid.Column="2"
+                        Text="+ Add"
+                        Padding="8,0"
+                        TextColor="{Binding DarkColor}"
+                        TranslationX="150" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

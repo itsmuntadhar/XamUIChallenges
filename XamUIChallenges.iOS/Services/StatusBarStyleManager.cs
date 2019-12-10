@@ -21,14 +21,16 @@ namespace XamUIChallenges.iOS.Services
                 foreach (var window in UIApplication.SharedApplication.Windows)
                 {
                     const int statusBarTag = 38482;
-
-                    if (window.ViewWithTag(statusBarTag) != null) continue;
-
                     var statusBar = new UIView(UIApplication.SharedApplication.StatusBarFrame)
                     {
                         Tag = 38482,
                         BackgroundColor = color.ToUIColor()
                     };
+
+                    if (window.ViewWithTag(statusBarTag) != null)
+                    {
+                        window.WillRemoveSubview(statusBar);
+                    }
                     window.AddSubview(statusBar);
                 }
             }

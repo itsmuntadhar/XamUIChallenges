@@ -15,6 +15,7 @@ namespace XamUIChallenges.Views.FoodAndDrinks
         public AboutView()
         {
             InitializeComponent();
+            BindingContext = new ViewModels.FoodAndDrinks.AboutViewModel(Navigation);
         }
     }
 }
