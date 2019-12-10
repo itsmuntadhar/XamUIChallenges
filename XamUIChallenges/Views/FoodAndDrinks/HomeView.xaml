@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamUIChallenges.Views.FoodAndDrinks.HomeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="FontSize" Value="23" />
+                <Setter Property="TextColor" Value="#deffffff" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="Subtitle" TargetType="Label">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#87ffffff" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ListView
+            x:Name="LayoutRoot"
+            Margin="0,0,0,8"
+            CachingStrategy="RecycleElement"
+            ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="16,16,16,8" HeightRequest="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.6*" />
+                                <ColumnDefinition Width="0.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*" />
+                                <RowDefinition Height="0.5*" />
+                            </Grid.RowDefinitions>
+                            <BoxView
+                                Grid.RowSpan="2"
+                                Grid.ColumnSpan="2"
+                                BackgroundColor="{Binding DarkColor}"
+                                CornerRadius="17" />
+                            <Image
+                                Grid.RowSpan="2"
+                                Margin="7,0,0,0"
+                                Source="{Binding ImageSource}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Column="1"
+                                Margin="-5,0,0,0"
+                                Style="{StaticResource Title}"
+                                Text="{Binding Title}"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="5,0,0,0"
+                                CharacterSpacing="1.5"
+                                Style="{StaticResource Subtitle}"
+                                Text="{Binding Header}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ItemDetailsCommand, Source={x:Reference LayoutRoot}}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
